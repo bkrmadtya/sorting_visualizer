@@ -1,5 +1,20 @@
 import React from "react";
 
+import Bar from "./Bar";
+
+const BarContainer = ({ array }) => {
+  const width = 200 / array.length;
+  return (
+    <div style={style}>
+      {array.map((value) => (
+        <Bar key={value} state={{ value }} width={width} />
+      ))}
+    </div>
+  );
+};
+
+export default BarContainer;
+
 const style = {
   position: "absolute",
   bottom: "40%",
@@ -10,15 +25,3 @@ const style = {
   justifyContent: "center",
   alignItems: "flex-end",
 };
-
-const BarContainer = ({ array }) => {
-  return (
-    <div style={style}>
-      {array.map((value) => (
-        <div key={value}>{value}</div>
-      ))}
-    </div>
-  );
-};
-
-export default BarContainer;
