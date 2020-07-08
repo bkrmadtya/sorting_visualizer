@@ -5,9 +5,13 @@ import Bar from "./Bar";
 const BarContainer = ({ array }) => {
   const width = 200 / array.length;
   return (
-    <div style={style}>
+    <div style={containerStyle}>
       {array.map((value) => (
-        <Bar key={value} state={{ value }} width={width} />
+        <Bar
+          key={value}
+          state={{ value, backgroundColor: "orange" }}
+          width={width}
+        />
       ))}
     </div>
   );
@@ -15,7 +19,7 @@ const BarContainer = ({ array }) => {
 
 export default BarContainer;
 
-const style = {
+const containerStyle = {
   position: "absolute",
   bottom: "40%",
   left: 0,
