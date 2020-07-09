@@ -1,7 +1,6 @@
 import React from "react";
 
 const Bar = ({ bar, width }) => {
-  console.log(bar.v);
   return (
     <div
       style={{
