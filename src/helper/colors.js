@@ -5,3 +5,5 @@ const colors = {
   SWAPPED: "#DA5D49",
   UNSWAPPED: "#8AD180",
 };
+
+export default colors;

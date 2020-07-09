@@ -7,7 +7,7 @@ function App() {
   return (
     <div>
       <h1>Sorting Algorithm Visualizer</h1>
-      <BarContainer array={array} />
+      <BarContainer />
     </div>
   );
 }

@@ -1,16 +1,17 @@
 import React from "react";
 
-const Bar = ({ state, width }) => {
+const Bar = ({ bar, width }) => {
+  console.log(bar.v);
   return (
     <div
       style={{
         ...barStyle,
         width,
-        height: state.value,
-        backgroundColor: state.backgroundColor,
+        height: bar.height,
+        backgroundColor: bar.color,
       }}
     >
-      {state.value}
+      {/* {bar.height} */}
     </div>
   );
 };
@@ -22,5 +23,5 @@ const barStyle = {
   textAlign: "center",
   borderRadius: "5px",
   fontSize: 7,
-  marginLeft: 1,
+  marginLeft: 2,
 };

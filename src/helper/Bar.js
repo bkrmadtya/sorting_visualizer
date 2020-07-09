@@ -1,7 +1,7 @@
-import colors from "./Colors";
+import colors from "./colors";
 import states from "./states";
 
-export class Bar {
+export default class Bar {
   constructor(height, state = states.UNSORTED) {
     this.height = height;
     this.state = state;
@@ -15,7 +15,7 @@ export class Bar {
     this._state = newState;
   }
 
-  get getColor() {
+  get color() {
     return colors[this.state];
   }
 }
