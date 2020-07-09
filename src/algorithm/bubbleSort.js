@@ -1,56 +1,51 @@
 import states from "../helper/states";
 
-const bubbleSort = () => {
-  const isSorted = isArraySorted(array);
-  if (isSorted) return;
+import {}
 
-  // setSorting(true);
-
-  let result = [...array];
-  let length = result.length;
+const bubbleSort = (arrayToSort) => {
+  let arrayCopy = [...arrayToSort];
+  let length = arrayCopy.length;
 
   while (length) {
-    let active = result[0];
-    active.state = states.ACTIVE;
+    let activeEle = arrayCopy[0];
+    activeEle.state = states.ACTIVE;
 
     for (let j = 1; j < length; j++) {
-      const comp = result[j];
-      comp.state = states.ACTIVE;
-      active.state = states.ACTIVE;
+      const comparedEle = arrayCopy[j];
+      comparedEle.state = states.ACTIVE;
+      activeEle.state = states.ACTIVE;
 
-      // await updateWithDelay([...result], active, comp);
+      // await updateArrayWithDelay([...arrayCopy], activeEle, comparedEle);
 
-      if (active.value >= comp.value) {
-        comp.state = states.SWAPPED;
-        active.state = states.SWAPPED;
-        //   await updateWithDelay([...result], active, comp);
+      if (activeEle.value >= comparedEle.value) {
+        comparedEle.state = states.SWAPPED;
+        activeEle.state = states.SWAPPED;
+        //   await updateArrayWithDelay([...arrayCopy], activeEle, comparedEle);
 
-        const temp = active;
-        comp.state = states.UNSORTED;
+        const temp = activeEle;
+        comparedEle.state = states.UNSORTED;
         temp.state = states.UNSORTED;
 
-        result[j - 1] = comp;
-        result[j] = temp;
+        arrayCopy[j - 1] = comparedEle;
+        arrayCopy[j] = temp;
       } else {
-        comp.state = states.UNSWAPPED;
-        active.state = states.UNSWAPPED;
-        //   await updateWithDelay([...result], active, comp);
+        comparedEle.state = states.UNSWAPPED;
+        activeEle.state = states.UNSWAPPED;
+        //   await updateArrayWithDelay([...arrayCopy], activeEle, comparedEle);
 
-        comp.state = states.UNSORTED;
-        active.state = states.UNSORTED;
+        comparedEle.state = states.UNSORTED;
+        activeEle.state = states.UNSORTED;
 
-        active = result[j];
+        activeEle = arrayCopy[j];
       }
 
-      comp.state = states.UNSORTED;
-      active.state = states.UNSORTED;
-      // await updateWithDelay([...result], active, comp);
+      comparedEle.state = states.UNSORTED;
+      activeEle.state = states.UNSORTED;
+      // await updateArrayWithDelay([...arrayCopy], activeEle, comparedEle);
     }
-    active.state = states.SORTED;
+    activeEle.state = states.SORTED;
     length -= 1;
   }
-
-  // setSorting(false);
 };
 
 export default bubbleSort;
