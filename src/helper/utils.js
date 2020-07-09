@@ -10,3 +10,12 @@ export const isArraySorted = (arr) => {
 
   return true;
 };
+
+export const updateWithDelay = (array, SORTING_SPEED_MS, updateArrayFunc) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      updateArrayFunc([...array]);
+      resolve();
+    }, SORTING_SPEED_MS / array.length);
+  });
+};

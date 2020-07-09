@@ -1,8 +1,6 @@
 import states from "../helper/states";
 
-import {}
-
-const bubbleSort = (arrayToSort) => {
+const bubbleSort = async (arrayToSort, updateArrayWithDelay) => {
   let arrayCopy = [...arrayToSort];
   let length = arrayCopy.length;
 
@@ -15,12 +13,12 @@ const bubbleSort = (arrayToSort) => {
       comparedEle.state = states.ACTIVE;
       activeEle.state = states.ACTIVE;
 
-      // await updateArrayWithDelay([...arrayCopy], activeEle, comparedEle);
+      // await updateArrayWithDelay([...arrayCopy]);
 
       if (activeEle.value >= comparedEle.value) {
         comparedEle.state = states.SWAPPED;
         activeEle.state = states.SWAPPED;
-        //   await updateArrayWithDelay([...arrayCopy], activeEle, comparedEle);
+        //   await updateArrayWithDelay([...arrayCopy]);
 
         const temp = activeEle;
         comparedEle.state = states.UNSORTED;
@@ -31,7 +29,7 @@ const bubbleSort = (arrayToSort) => {
       } else {
         comparedEle.state = states.UNSWAPPED;
         activeEle.state = states.UNSWAPPED;
-        //   await updateArrayWithDelay([...arrayCopy], activeEle, comparedEle);
+        //   await updateArrayWithDelay([...arrayCopy]);
 
         comparedEle.state = states.UNSORTED;
         activeEle.state = states.UNSORTED;
@@ -41,7 +39,7 @@ const bubbleSort = (arrayToSort) => {
 
       comparedEle.state = states.UNSORTED;
       activeEle.state = states.UNSORTED;
-      // await updateArrayWithDelay([...arrayCopy], activeEle, comparedEle);
+      // await updateArrayWithDelay([...arrayCopy]);
     }
     activeEle.state = states.SORTED;
     length -= 1;
