@@ -3,22 +3,46 @@ import React, { useState, useEffect } from "react";
 import BarContainter from "./BarContainer";
 
 import { generateBarsWithRandomHeights } from "../helper/generator";
+import { isArraySorted } from "../helper/utils";
+
+import { bubbleSort } from "../algorithm";
+
+const SORTING_SPEED_MS = 100;
 
 const SortingVisualizer = () => {
-  const [arraySize, setArraySize] = useState(50);
+  const [arraySize, setArraySize] = useState(10);
   const [array, setArray] = useState(generateBarsWithRandomHeights(arraySize));
+  const [sortingInProgress, setSortingInProgress] = useState(false);
 
   useEffect(() => {
     resetArray();
   }, [arraySize]);
 
-  const sort = () => {
-    const sortedArray = [...array].sort((a, b) => a.height - b.height);
-    setArray([...sortedArray]);
+  const updateWithDelay = (array) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        setArray([...array]);
+        resolve();
+      }, SORTING_SPEED_MS / array.length);
+    });
+  };
+
+  const sort = (e) => {
+    e.preventDefault();
+    const isSorted = isArraySorted(array);
+    if (!isSorted && !sortingInProgress) {
+      setSortingInProgress(true);
+      bubbleSort(array, updateWithDelay);
+
+      console.log(array);
+      setSortingInProgress(false);
+    }
   };
 
   const resetArray = () => {
-    setArray(generateBarsWithRandomHeights(arraySize));
+    if (!sortingInProgress) {
+      setArray(generateBarsWithRandomHeights(arraySize));
+    }
   };
 
   return (

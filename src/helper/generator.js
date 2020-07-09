@@ -7,7 +7,7 @@ const generateRandomNumber = (min, max) => {
 export const generateBarsWithRandomHeights = (size) => {
   const set = new Set();
 
-  while (set.size <= size) {
+  while (set.size < size) {
     const randomHeight = generateRandomNumber(10, 400);
     set.add(randomHeight);
   }

@@ -17,7 +17,7 @@ export default BarContainer;
 
 const containerStyle = {
   position: "absolute",
-  bottom: "30%",
+  bottom: "20%",
   left: 0,
   right: 0,
   zIndex: -5,
