@@ -1,3 +1,7 @@
+/**
+ * @property colors depending upon the state of the element or bar of the array
+ */
+
 const colors = {
   ACTIVE: "#7FD1B9",
   SORTED: "#C5A6DF",

@@ -1,3 +1,8 @@
+/**
+ * @function isArraySorted function to check if the given array is already sorted
+ * @param {*} arr array of Bar class with height property to be sorted
+ */
+
 export const isArraySorted = (arr) => {
   const sortedArr = [...arr].sort((a, b) => a.height - b.height);
 

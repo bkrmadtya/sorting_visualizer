@@ -1,3 +1,8 @@
+/**
+ * @function generateBarsWithRandomHeights a generator function to generate given number of Bar objects
+ * @param size number of required Bar objects
+ */
+
 import Bar from "helper/Bar";
 
 const generateRandomNumber = (min, max) => {
