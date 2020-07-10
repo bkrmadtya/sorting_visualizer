@@ -47,6 +47,29 @@ const SortingVisualizer = () => {
   return (
     <div>
       <BarContainter array={array} />
+
+      <ArraySizeSlider arraySize={arraySize} setArraySize={setArraySize} />
+
+      <SortingSpeedSlider
+        sortingSpeedInMS={sortingSpeedInMS}
+        setSortingSpeedInMS={setSortingSpeedInMS}
+      />
+
+      <button onClick={sort} disabled={sortingInProgress}>
+        Sort
+      </button>
+      <button onClick={resetArray} disabled={sortingInProgress}>
+        Reset
+      </button>
+    </div>
+  );
+};
+
+export default SortingVisualizer;
+
+const ArraySizeSlider = ({ setArraySize, arraySize }) => {
+  return (
+    <>
       <input
         type="range"
         min={10}
@@ -63,21 +86,9 @@ const SortingVisualizer = () => {
         }}
       />
       <span>Size of array :: {arraySize}</span>
-      <SortingSpeedSlider
-        sortingSpeedInMS={sortingSpeedInMS}
-        setSortingSpeedInMS={setSortingSpeedInMS}
-      />
-      <button onClick={sort} disabled={sortingInProgress}>
-        Sort
-      </button>
-      <button onClick={resetArray} disabled={sortingInProgress}>
-        Reset
-      </button>
-    </div>
+    </>
   );
 };
-
-export default SortingVisualizer;
 
 const SortingSpeedSlider = ({ setSortingSpeedInMS, sortingSpeedInMS }) => {
   return (
