@@ -13,6 +13,7 @@ const SortingVisualizer = () => {
   const [arraySize, setArraySize] = useState(10);
   const [array, setArray] = useState(generateBarsWithRandomHeights(arraySize));
   const [sortingInProgress, setSortingInProgress] = useState(false);
+  const [sortingSpeedInMS, setSortingSpeedInMS] = useState(10);
 
   useEffect(() => {
     resetArray();
@@ -23,7 +24,7 @@ const SortingVisualizer = () => {
       setTimeout(() => {
         setArray([...array]);
         resolve();
-      }, SORTING_SPEED_MS / array.length);
+      }, sortingSpeedInMS / array.length);
     });
   };
 
@@ -64,6 +65,10 @@ const SortingVisualizer = () => {
         }}
       />
       <span>Size of array :: {arraySize}</span>
+      <SortingSpeedSlider
+        sortingSpeedInMS={sortingSpeedInMS}
+        setSortingSpeedInMS={setSortingSpeedInMS}
+      />
       <button onClick={sort} disabled={sortingInProgress}>
         Sort
       </button>
@@ -75,3 +80,27 @@ const SortingVisualizer = () => {
 };
 
 export default SortingVisualizer;
+
+const SortingSpeedSlider = ({ setSortingSpeedInMS, sortingSpeedInMS }) => {
+  return (
+    <>
+      <input
+        type="range"
+        min={10}
+        max={100}
+        step={10}
+        value={sortingSpeedInMS}
+        onChange={({ target }) => {
+          // let size = target.value;
+
+          // if (size > 100 || size < 10) {
+          //   size = 50;
+          // }
+
+          setSortingSpeedInMS(target.value);
+        }}
+      />
+      <span>Sorting speed :: {sortingSpeedInMS}</span>
+    </>
+  );
+};
