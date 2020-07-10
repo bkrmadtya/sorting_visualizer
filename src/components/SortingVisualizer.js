@@ -7,8 +7,6 @@ import { isArraySorted } from "helper/utils";
 
 import { bubbleSort } from "algorithm";
 
-const SORTING_SPEED_MS = 0;
-
 const SortingVisualizer = () => {
   const [arraySize, setArraySize] = useState(10);
   const [array, setArray] = useState(generateBarsWithRandomHeights(arraySize));
@@ -91,13 +89,13 @@ const SortingSpeedSlider = ({ setSortingSpeedInMS, sortingSpeedInMS }) => {
         step={10}
         value={sortingSpeedInMS}
         onChange={({ target }) => {
-          // let size = target.value;
+          let size = target.value;
 
-          // if (size > 100 || size < 10) {
-          //   size = 50;
-          // }
+          if (size > 100 || size < 10) {
+            size = 50;
+          }
 
-          setSortingSpeedInMS(target.value);
+          setSortingSpeedInMS(size);
         }}
       />
       <span>Sorting speed :: {sortingSpeedInMS}</span>
