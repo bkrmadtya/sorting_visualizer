@@ -1,4 +1,4 @@
-import Bar from "./Bar";
+import Bar from "helper/Bar";
 
 const generateRandomNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);

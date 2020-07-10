@@ -1,5 +1,5 @@
-import colors from "./colors";
-import states from "./states";
+import colors from "helper/colors";
+import states from "helper/states";
 
 export default class Bar {
   constructor(height, state = states.UNSORTED) {

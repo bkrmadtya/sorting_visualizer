@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 
-import BarContainter from "./BarContainer";
+import BarContainter from "components/BarContainer";
 
-import { generateBarsWithRandomHeights } from "../helper/generator";
-import { isArraySorted } from "../helper/utils";
+import { generateBarsWithRandomHeights } from "helper/generator";
+import { isArraySorted } from "helper/utils";
 
-import { bubbleSort } from "../algorithm";
+import { bubbleSort } from "algorithm";
 
-const SORTING_SPEED_MS = 100;
+const SORTING_SPEED_MS = 0;
 
 const SortingVisualizer = () => {
   const [arraySize, setArraySize] = useState(10);
@@ -27,14 +27,14 @@ const SortingVisualizer = () => {
     });
   };
 
-  const sort = (e) => {
+  const sort = async (e) => {
     e.preventDefault();
     const isSorted = isArraySorted(array);
     if (!isSorted && !sortingInProgress) {
       setSortingInProgress(true);
-      bubbleSort(array, updateWithDelay);
 
-      console.log(array);
+      await bubbleSort(array, updateWithDelay);
+
       setSortingInProgress(false);
     }
   };
@@ -64,8 +64,12 @@ const SortingVisualizer = () => {
         }}
       />
       <span>Size of array :: {arraySize}</span>
-      <button onClick={sort}>Sort</button>
-      <button onClick={resetArray}>Reset</button>
+      <button onClick={sort} disabled={sortingInProgress}>
+        Sort
+      </button>
+      <button onClick={resetArray} disabled={sortingInProgress}>
+        Reset
+      </button>
     </div>
   );
 };
