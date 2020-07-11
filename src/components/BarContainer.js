@@ -3,7 +3,7 @@ import React from "react";
 import Bar from "components/Bar";
 
 const BarContainer = ({ array }) => {
-  const width = 200 / array.length;
+  const width = 400 / array.length;
   return (
     <div style={containerStyle}>
       {array.map((bar) => (

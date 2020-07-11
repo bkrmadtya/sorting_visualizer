@@ -12,7 +12,7 @@ const SortingVisualizer = () => {
   const [arraySize, setArraySize] = useState(10);
   const [array, setArray] = useState(generateBarsWithRandomHeights(arraySize));
   const [sortingInProgress, setSortingInProgress] = useState(false);
-  const [sortingSpeedInMS, setSortingSpeedInMS] = useState(10);
+  const [sortingSpeedInMS, setSortingSpeedInMS] = useState(0);
 
   const [selectedAlgorithm, setSelectedAlgorithm] = useState(
     algorithmOptions[1]
@@ -127,7 +127,7 @@ const SortingSpeedSlider = ({ setSortingSpeedInMS, sortingSpeedInMS }) => {
     <>
       <input
         type="range"
-        min={10}
+        min={0}
         max={10000}
         step={10}
         value={sortingSpeedInMS}
@@ -141,7 +141,7 @@ const SortingSpeedSlider = ({ setSortingSpeedInMS, sortingSpeedInMS }) => {
           setSortingSpeedInMS(size);
         }}
       />
-      <span>Sorting speed :: {sortingSpeedInMS}</span>
+      <span>Sorting speed :: {sortingSpeedInMS} ms</span>
     </>
   );
 };
