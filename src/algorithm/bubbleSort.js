@@ -10,8 +10,8 @@ const bubbleSort = async (arrayToSort, updateArrayWithDelay) => {
 
     for (let j = 1; j < length; j++) {
       const comparedEle = arrayCopy[j];
-      comparedEle.state = ACTIVE;
       activeEle.state = ACTIVE;
+      comparedEle.state = ACTIVE;
 
       await updateArrayWithDelay([...arrayCopy]);
 
