@@ -83,7 +83,11 @@ const mergeSort = async (array, updateArrayWithDelay) => {
     return sortedArr;
   };
 
-  const sortedArray = await sort(array);
+  let sortedArray = await sort(array);
+  sortedArray = sortedArray.map((i) => {
+    i.state = SORTED;
+    return i;
+  });
 
   updateArrayWithDelay([...sortedArray]);
 };
