@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 
 const Bar = ({ bar, width }) => {
-  useEffect(() => {}, [bar.color]);
-
   return (
     <div
       style={{

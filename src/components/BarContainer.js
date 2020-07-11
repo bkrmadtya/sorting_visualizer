@@ -20,7 +20,7 @@ const containerStyle = {
   bottom: "20%",
   left: 0,
   right: 0,
-  zIndex: -5,
+  // zIndex: -5,
   display: "flex",
   flexDirection: "row",
   justifyContent: "center",

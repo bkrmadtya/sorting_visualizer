@@ -50,7 +50,7 @@ const SortingVisualizer = () => {
   };
 
   return (
-    <div>
+    <div style={containerStyle}>
       <BarContainter array={array} />
       <AlgorithmSelector
         algorithmOptions={algorithmOptions}
@@ -128,13 +128,13 @@ const SortingSpeedSlider = ({ setSortingSpeedInMS, sortingSpeedInMS }) => {
       <input
         type="range"
         min={10}
-        max={1000}
+        max={10000}
         step={10}
         value={sortingSpeedInMS}
         onChange={({ target }) => {
           let size = target.value;
 
-          if (size > 1000 || size < 10) {
+          if (size > 10000 || size < 10) {
             size = 50;
           }
 
@@ -144,4 +144,9 @@ const SortingSpeedSlider = ({ setSortingSpeedInMS, sortingSpeedInMS }) => {
       <span>Sorting speed :: {sortingSpeedInMS}</span>
     </>
   );
+};
+
+const containerStyle = {
+  height: "100vh",
+  backgroundColor: "lightGrey",
 };
