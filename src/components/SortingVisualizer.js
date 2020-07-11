@@ -52,6 +52,11 @@ const SortingVisualizer = () => {
   return (
     <div>
       <BarContainter array={array} />
+      <AlgorithmSelector
+        algorithmOptions={algorithmOptions}
+        selectedAlgorithm={selectedAlgorithm}
+        setSelectedAlgorithm={setSelectedAlgorithm}
+      />
 
       <ArraySizeSlider arraySize={arraySize} setArraySize={setArraySize} />
 
@@ -71,6 +76,28 @@ const SortingVisualizer = () => {
 };
 
 export default SortingVisualizer;
+
+const AlgorithmSelector = ({
+  algorithmOptions,
+  selectedAlgorithm,
+  setSelectedAlgorithm,
+}) => {
+  const options = algorithmOptions.map((i) => (
+    <option key={i} value={i}>
+      {i}
+    </option>
+  ));
+  return (
+    <select
+      value={selectedAlgorithm}
+      onChange={({ target }) => {
+        setSelectedAlgorithm(target.value);
+      }}
+    >
+      {options}
+    </select>
+  );
+};
 
 const ArraySizeSlider = ({ setArraySize, arraySize }) => {
   return (
