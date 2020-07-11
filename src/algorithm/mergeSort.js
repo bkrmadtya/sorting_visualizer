@@ -1,5 +1,5 @@
 import states from "helper/states";
-const { ACTIVE, UNSWAPPED, SWAPPED, SORTED } = states;
+const { ACTIVE, UNSWAPPED, SWAPPED, SORTED, UNSORTED } = states;
 
 const mergeSort = async (array, updateArrayWithDelay) => {
   let arrayToSort = null;
@@ -40,13 +40,40 @@ const mergeSort = async (array, updateArrayWithDelay) => {
       const comparedEle = rightArr[0];
 
       updateArray(arrayToSort, activeEle, comparedEle, ACTIVE);
-
       await updateArrayWithDelay([...arrayToSort]);
 
+      const currentIndex = sortedArr.length;
+
       if (activeEle.height < comparedEle.height) {
+        updateArray(arrayToSort, activeEle, comparedEle, SWAPPED);
+        await updateArrayWithDelay([...arrayToSort]);
+
         sortedArr.push(leftArr.shift());
+
+        changeElementPostition(
+          arrayToSort,
+          activeEle,
+          currentIndex,
+          leastIndex
+        );
+
+        updateArray(arrayToSort, activeEle, comparedEle, UNSORTED);
+        await updateArrayWithDelay([...arrayToSort]);
       } else {
+        updateArray(arrayToSort, activeEle, comparedEle, UNSWAPPED);
+        await updateArrayWithDelay([...arrayToSort]);
+
         sortedArr.push(rightArr.shift());
+
+        changeElementPostition(
+          arrayToSort,
+          comparedEle,
+          currentIndex,
+          leastIndex
+        );
+
+        updateArray(arrayToSort, activeEle, comparedEle, UNSORTED);
+        await updateArrayWithDelay([...arrayToSort]);
       }
     }
 
@@ -96,13 +123,13 @@ const updateArray = (array, firstEle, secondEle, state) => {
   return array;
 };
 
-const changeElementPostition = (array, firstEle, secondEle) => {
+// https://stackoverflow.com/questions/5306680/move-an-array-element-from-one-array-position-to-another
+const changeElementPostition = (array, firstEle, currentIndex, leastIndex) => {
   const indexOfFirstEle = array.indexOf(firstEle);
-  const indexOfSecondEle = array.indexOf(secondEle);
 
-  const temp = firstEle;
-  array[indexOfFirstEle] = secondEle;
-  array[indexOfSecondEle] = temp;
-
-  return array;
+  array.splice(
+    leastIndex + currentIndex,
+    0,
+    array.splice(indexOfFirstEle, 1)[0]
+  );
 };

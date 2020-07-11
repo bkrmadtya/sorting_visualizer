@@ -15,7 +15,7 @@ const bubbleSort = async (arrayToSort, updateArrayWithDelay) => {
 
       await updateArrayWithDelay([...arrayCopy]);
 
-      if (activeEle.height >= comparedEle.height) {
+      if (activeEle.height > comparedEle.height) {
         comparedEle.state = SWAPPED;
         activeEle.state = SWAPPED;
         await updateArrayWithDelay([...arrayCopy]);

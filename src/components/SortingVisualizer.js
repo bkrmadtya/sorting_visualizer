@@ -128,13 +128,13 @@ const SortingSpeedSlider = ({ setSortingSpeedInMS, sortingSpeedInMS }) => {
       <input
         type="range"
         min={10}
-        max={100}
+        max={1000}
         step={10}
         value={sortingSpeedInMS}
         onChange={({ target }) => {
           let size = target.value;
 
-          if (size > 100 || size < 10) {
+          if (size > 1000 || size < 10) {
             size = 50;
           }
 
