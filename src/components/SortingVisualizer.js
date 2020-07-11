@@ -5,13 +5,18 @@ import BarContainter from "components/BarContainer";
 import { generateBarsWithRandomHeights } from "helper/generator";
 import { isArraySorted } from "helper/utils";
 
-import { bubbleSort } from "algorithm";
+import * as algorithms from "algorithm";
 
 const SortingVisualizer = () => {
+  const algorithmOptions = Object.keys(algorithms);
   const [arraySize, setArraySize] = useState(10);
   const [array, setArray] = useState(generateBarsWithRandomHeights(arraySize));
   const [sortingInProgress, setSortingInProgress] = useState(false);
   const [sortingSpeedInMS, setSortingSpeedInMS] = useState(10);
+
+  const [selectedAlgorithm, setSelectedAlgorithm] = useState(
+    algorithmOptions[0]
+  );
 
   useEffect(() => {
     resetArray();
@@ -32,7 +37,7 @@ const SortingVisualizer = () => {
     if (!isSorted && !sortingInProgress) {
       setSortingInProgress(true);
 
-      await bubbleSort(array, updateWithDelay);
+      await algorithms[selectedAlgorithm](array, updateWithDelay);
 
       setSortingInProgress(false);
     }
