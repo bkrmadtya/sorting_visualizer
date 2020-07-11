@@ -29,11 +29,6 @@ const mergeSort = async (array, updateArrayWithDelay) => {
   const merge = async (leftArr, rightArr) => {
     const sortedArr = [];
     const leastIndex = getLeastIndex(arrayToSort, leftArr[0], rightArr[0]);
-    const highestIndex = getHighestIndex(
-      arrayToSort,
-      leftArr[leftArr.length - 1],
-      rightArr[rightArr.length - 1]
-    );
 
     while (leftArr.length && rightArr.length) {
       const activeEle = leftArr[0];
@@ -100,15 +95,6 @@ const getLeastIndex = (array, firstEle, secondEle) => {
   const indexOfSecondEle = array.indexOf(secondEle);
 
   return indexOfFirstEle < indexOfSecondEle
-    ? indexOfFirstEle
-    : indexOfSecondEle;
-};
-
-const getHighestIndex = (array, firstEle, secondEle) => {
-  const indexOfFirstEle = array.indexOf(firstEle);
-  const indexOfSecondEle = array.indexOf(secondEle);
-
-  return indexOfFirstEle > indexOfSecondEle
     ? indexOfFirstEle
     : indexOfSecondEle;
 };
