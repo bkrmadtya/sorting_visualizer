@@ -41,7 +41,7 @@ const mergeSort = async (array, updateArrayWithDelay) => {
       const currentIndex = sortedArr.length;
 
       if (activeEle.height < comparedEle.height) {
-        // update the two compared bar or element's state to SWAPPED in case the first element is smaller than second element
+        // update the two compared bar or element's state to UNSWAPPED in case the first element is smaller than second element
         updateArray(arrayToSort, activeEle, comparedEle, UNSWAPPED);
         // update the view by updating the array in the state of the application
         await updateArrayWithDelay([...arrayToSort]);
@@ -56,7 +56,7 @@ const mergeSort = async (array, updateArrayWithDelay) => {
           leastIndex
         );
       } else {
-        // update the two compared bar or element's state to UNSWAPPED in case the first element is LARGER than second element
+        // update the two compared bar or element's state to SWAPPED in case the first element is LARGER than second element
         updateArray(arrayToSort, activeEle, comparedEle, SWAPPED);
         // update the view by updating the array in the state of the application
         await updateArrayWithDelay([...arrayToSort]);
