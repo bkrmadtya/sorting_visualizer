@@ -8,6 +8,7 @@ const states = {
   ACTIVE: "ACTIVE",
   UNSWAPPED: "UNSWAPPED",
   SWAPPED: "SWAPPED",
+  PIVOT: "PIVOT",
 };
 
 export default states;

@@ -18,7 +18,7 @@ const SortingVisualizer = () => {
   const [sortingSpeedInMS, setSortingSpeedInMS] = useState(0);
 
   const [selectedAlgorithm, setSelectedAlgorithm] = useState(
-    algorithmOptions[1]
+    algorithmOptions[2]
   );
 
   useEffect(() => {

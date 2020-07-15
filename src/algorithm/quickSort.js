@@ -1,29 +1,37 @@
+import states from "../helper/states";
+const { ACTIVE, SORTED, SWAPPED, UNSORTED, UNSWAPPED, PIVOT } = states;
+
 const quickSort = async (array, updateWithDelay) => {
   const arrayToSort = [...array];
 
-  const partition = async (array, left, right) => {
-    let pivot = array[Math.floor((right + left) / 2)],
-      i = left,
-      j = right;
+  const partition = async (array, leftIndex, rightIndex) => {
+    let pivot = array[Math.floor((rightIndex + leftIndex) / 2)];
+    let left = leftIndex;
+    let right = rightIndex;
 
-    while (i <= j) {
-      while (array[i] < pivot) {
-        i++;
+    changeElementState(arrayToSort, pivot, PIVOT);
+    updateArray(arrayToSort, array[left], array[right], ACTIVE);
+
+    await updateWithDelay([...arrayToSort]);
+
+    while (left <= right) {
+      while (array[left] < pivot) {
+        left++;
       }
 
-      while (array[j] > pivot) {
-        j--;
+      while (array[right] > pivot) {
+        right--;
       }
 
-      if (i <= j) {
-        swap(array, i, j);
+      if (left <= right) {
+        swap(array, left, right);
 
-        i++;
-        j--;
+        left++;
+        right--;
       }
     }
 
-    return i;
+    return left;
   };
 
   const sort = async (array, left, right) => {
@@ -50,8 +58,25 @@ const quickSort = async (array, updateWithDelay) => {
     array[rightIndex] = temp;
   };
 
-  console.log(arrayToSort);
-  return arrayToSort;
+  await sort(arrayToSort, 0, arrayToSort.length - 1);
+
+  //   console.log(arrayToSort);
+  //   return arrayToSort;
 };
 
 export default quickSort;
+
+// change the state of active and compared element in the original array
+const updateArray = (array, firstEle, secondEle, state) => {
+  changeElementState(array, firstEle, state);
+  changeElementState(array, secondEle, state);
+
+  return array;
+};
+
+const changeElementState = (array, element, state) => {
+  const indexOfEle = array.indexOf(element);
+  array[indexOfEle].state = state;
+
+  return array;
+};
