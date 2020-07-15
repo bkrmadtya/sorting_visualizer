@@ -8,6 +8,7 @@ const colors = {
   UNSORTED: "rgba(66, 134, 244, 0.8)",
   SWAPPED: "#DA5D49",
   UNSWAPPED: "#8AD180",
+  PIVOT: "#FFFB46",
 };
 
 export default colors;
