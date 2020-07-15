@@ -7,15 +7,18 @@ import { isArraySorted } from "helper/utils";
 
 import * as algorithms from "algorithm";
 
+let count = 1;
+
+const algorithmOptions = Object.keys(algorithms);
+
 const SortingVisualizer = () => {
-  const algorithmOptions = Object.keys(algorithms);
   const [arraySize, setArraySize] = useState(10);
   const [array, setArray] = useState(generateBarsWithRandomHeights(arraySize));
   const [sortingInProgress, setSortingInProgress] = useState(false);
   const [sortingSpeedInMS, setSortingSpeedInMS] = useState(0);
 
   const [selectedAlgorithm, setSelectedAlgorithm] = useState(
-    algorithmOptions[0]
+    algorithmOptions[1]
   );
 
   useEffect(() => {
@@ -23,11 +26,13 @@ const SortingVisualizer = () => {
   }, [arraySize]);
 
   const updateWithDelay = (array) => {
+    const speed = sortingSpeedInMS / array.length;
+    console.log(speed);
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         setArray([...array]);
         resolve();
-      }, sortingSpeedInMS / array.length);
+      }, speed);
     });
   };
 
@@ -149,4 +154,5 @@ const SortingSpeedSlider = ({ setSortingSpeedInMS, sortingSpeedInMS }) => {
 const containerStyle = {
   height: "100vh",
   backgroundColor: "lightGrey",
+  zIndex: -100,
 };

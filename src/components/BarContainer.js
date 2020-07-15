@@ -20,9 +20,11 @@ const containerStyle = {
   bottom: "20%",
   left: 0,
   right: 0,
-  // zIndex: -5,
+  zIndex: 0,
   display: "flex",
   flexDirection: "row",
   justifyContent: "center",
-  alignItems: "flex-end",
+  // alignItems: "flex-end",
+  // width: 1600,
+  // margin: "0 auto",
 };
