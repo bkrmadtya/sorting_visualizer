@@ -27,7 +27,6 @@ const SortingVisualizer = () => {
 
   const updateWithDelay = (array) => {
     const speed = sortingSpeedInMS / array.length;
-    console.log(speed);
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         setArray([...array]);

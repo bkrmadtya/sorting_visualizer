@@ -1,5 +1,7 @@
-const quickSort = (arrayToSort, updateWithDelay) => {
-  const partition = (array, left, right) => {
+const quickSort = async (array, updateWithDelay) => {
+  const arrayToSort = [...array];
+
+  const partition = async (array, left, right) => {
     let pivot = array[Math.floor((right + left) / 2)],
       i = left,
       j = right;
@@ -8,11 +10,14 @@ const quickSort = (arrayToSort, updateWithDelay) => {
       while (array[i] < pivot) {
         i++;
       }
+
       while (array[j] > pivot) {
         j--;
       }
+
       if (i <= j) {
         swap(array, i, j);
+
         i++;
         j--;
       }
@@ -21,17 +26,18 @@ const quickSort = (arrayToSort, updateWithDelay) => {
     return i;
   };
 
-  const sort = (array, left, right) => {
+  const sort = async (array, left, right) => {
     let index;
 
     if (array.length > 1) {
-      index = partition(array, left, right);
+      index = await partition(array, left, right);
+
       if (left < index - 1) {
-        sort(array, left, index - 1);
+        await sort(array, left, index - 1);
       }
 
       if (index < right) {
-        sort(array, index, right);
+        await sort(array, index, right);
       }
     }
 
@@ -43,6 +49,9 @@ const quickSort = (arrayToSort, updateWithDelay) => {
     array[leftIndex] = array[rightIndex];
     array[rightIndex] = temp;
   };
+
+  console.log(arrayToSort);
+  return arrayToSort;
 };
 
 export default quickSort;
