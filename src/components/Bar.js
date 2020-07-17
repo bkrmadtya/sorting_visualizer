@@ -10,7 +10,7 @@ const Bar = ({ bar, width }) => {
         backgroundColor: bar.color,
       }}
     >
-      {/* {bar.height} */}
+      {bar.height}
     </div>
   );
 };
@@ -23,6 +23,6 @@ const barStyle = {
   borderRadius: "5px",
   // flexGrow: 1,
   // flexBasis: "0%",
-  fontSize: 7,
+  // fontSize: 7,
   marginLeft: 2,
 };

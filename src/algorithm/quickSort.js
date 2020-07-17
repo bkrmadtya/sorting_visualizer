@@ -11,20 +11,48 @@ const quickSort = async (array, updateWithDelay) => {
 
     changeElementState(arrayToSort, pivot, PIVOT);
     updateArray(arrayToSort, array[left], array[right], ACTIVE);
-
     await updateWithDelay([...arrayToSort]);
 
     while (left <= right) {
-      while (array[left] < pivot) {
+      while (array[left].height < pivot.height) {
+        changeElementState(arrayToSort, array[left], UNSORTED);
+        changeElementState(arrayToSort, array[left + 1], ACTIVE);
+        await updateWithDelay([...arrayToSort]);
+
         left++;
       }
 
-      while (array[right] > pivot) {
+      while (array[right].height > pivot.height) {
+        changeElementState(arrayToSort, array[right], UNSORTED);
+        changeElementState(arrayToSort, array[right - 1], ACTIVE);
+        await updateWithDelay([...arrayToSort]);
+
         right--;
       }
 
       if (left <= right) {
-        swap(array, left, right);
+        const tempRight = right;
+        const tempLeft = left;
+
+        updateArray(arrayToSort, array[left], array[right], ACTIVE);
+        await updateWithDelay([...arrayToSort]);
+
+        if (left !== right) {
+          updateArray(arrayToSort, array[left], array[right], SWAPPED);
+          await updateWithDelay([...arrayToSort]);
+
+          swap(
+            arrayToSort,
+            arrayToSort.indexOf(array[left]),
+            arrayToSort.indexOf(array[right])
+          );
+          await updateWithDelay([...arrayToSort]);
+
+          swap(array, left, right);
+        }
+
+        updateArray(arrayToSort, array[right], array[left], UNSORTED);
+        await updateWithDelay([...arrayToSort]);
 
         left++;
         right--;
@@ -58,16 +86,19 @@ const quickSort = async (array, updateWithDelay) => {
     array[rightIndex] = temp;
   };
 
-  await sort(arrayToSort, 0, arrayToSort.length - 1);
-
-  //   console.log(arrayToSort);
-  //   return arrayToSort;
+  await sort([...arrayToSort], 0, arrayToSort.length - 1);
 };
 
 export default quickSort;
 
 // change the state of active and compared element in the original array
 const updateArray = (array, firstEle, secondEle, state) => {
+  if (state === SWAPPED) {
+    if (firstEle.height === secondEle.height) {
+      // console.log(firstEle, secondEle, array);
+    }
+  }
+
   changeElementState(array, firstEle, state);
   changeElementState(array, secondEle, state);
 
@@ -76,7 +107,10 @@ const updateArray = (array, firstEle, secondEle, state) => {
 
 const changeElementState = (array, element, state) => {
   const indexOfEle = array.indexOf(element);
-  array[indexOfEle].state = state;
+
+  if (indexOfEle >= 0) {
+    array[indexOfEle].state = state;
+  }
 
   return array;
 };
