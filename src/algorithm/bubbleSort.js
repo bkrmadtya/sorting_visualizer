@@ -49,7 +49,7 @@ const bubbleSort = async (arrayToSort, updateArrayWithDelay) => {
 
       // change state of active and compared element to UNSORTED as they are not sorted yet
       comparedEle.state = UNSORTED;
-      activeEle.state = UNSORTED;
+      activeEle.state = ACTIVE;
 
       // update the view by updating the array in the state of the application
       await updateArrayWithDelay([...arrayCopy]);

@@ -34,9 +34,6 @@ const quickSort = async (array, updateWithDelay) => {
         const tempRight = right;
         const tempLeft = left;
 
-        updateArray(arrayToSort, array[left], array[right], ACTIVE);
-        await updateWithDelay([...arrayToSort]);
-
         if (left !== right) {
           updateArray(arrayToSort, array[left], array[right], SWAPPED);
           await updateWithDelay([...arrayToSort]);
